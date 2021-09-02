@@ -1,0 +1,1 @@
+import GithHubWrapper from "../lib/gistApiWrapper";
