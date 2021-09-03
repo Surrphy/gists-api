@@ -9,7 +9,6 @@ export default function GistListing() {
 
     useEffect(() => {
         getToken(setToken)
-        getAllGists()
     }, [])
 
     const getAllGists = async () => {
@@ -17,7 +16,6 @@ export default function GistListing() {
 
         let response = await wrapper.getAllGists().then((res) => res.data).catch((e) => console.error(e))
         setGists(response)
-        console.log(response)
     }
 
     return (
