@@ -11,6 +11,7 @@ export default function GistDel(props) {
         let wrapper = new GistApiWrapper(token)
 
         wrapper.deleteGist(id).catch((e) => console.log(e))
+        props.getAllGists()
     }
 
     useEffect(() => {

@@ -22,6 +22,7 @@ export default function GistAdd() {
         }
 
         wrapper.createGist(payload).catch((e) => console.log(e))
+        setNewGist({filename: '', content: '', descritpion: '', public: false})
     }
 
     useEffect (() => {
