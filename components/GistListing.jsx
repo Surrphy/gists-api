@@ -20,7 +20,7 @@ export default function GistListing() {
 
     return (
         <div>
-            {gists?.map((gist) => (<Gist url={gist.html_url} id={gist.id} key={gist.id} description={gist.description} getAllGists={getAllGists} />))}
+            {gists?.map((gist) => (<Gist id={gist.id} key={gist.id} description={gist.description} getAllGists={getAllGists} />))}
             <button onClick={getAllGists}>Reload</button>
         </div>
     )
