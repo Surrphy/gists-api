@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 
 import { getToken, GistApiWrapper } from "../lib/lib";
-import Gist from "./Gist";
 
 export default function GistAdd() {
     const [token, setToken] = useState('')
@@ -9,6 +8,7 @@ export default function GistAdd() {
 
     const addNewGist = (e) => {
         e.preventDefault()
+        getToken(setToken)
         let wrapper = new GistApiWrapper(token)
 
         let payload = {

@@ -7,7 +7,8 @@ export default function GistDel(props) {
 
     const deleteGist = (e, id) => {
         e.preventDefault()
-
+        getToken(setToken)
+        
         let wrapper = new GistApiWrapper(token)
 
         wrapper.deleteGist(id).catch((e) => console.log(e))

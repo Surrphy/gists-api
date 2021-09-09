@@ -13,6 +13,7 @@ export default function GistListing() {
 
     const getAllGists = async () => {
         let wrapper = new GistApiWrapper(token)
+        getToken(setToken)
 
         let response = await wrapper.getAllGists().then((res) => res.data).catch((e) => console.error(e))
         setGists(response)
