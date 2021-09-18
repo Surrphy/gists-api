@@ -8,10 +8,13 @@ export default function GistListing() {
     const [gists, setGists] = useState([])
 
     useEffect(() => {
-        getToken(setToken)
+        getToken((token) => {
+            getAllGists(token)
+            setToken(token)
+        })
     }, [])
 
-    const getAllGists = async () => {
+    const getAllGists = async (token) => {
         let wrapper = new GistApiWrapper(token)
         getToken(setToken)
 
@@ -22,7 +25,7 @@ export default function GistListing() {
     return (
         <div>
             {gists?.map((gist) => (<Gist id={gist.id} key={gist.id} description={gist.description} getAllGists={getAllGists} />))}
-            <button onClick={getAllGists}>Reload</button>
+            <button onClick={() => getAllGists(token)}>Reload</button>
         </div>
     )
 }

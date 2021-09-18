@@ -6,7 +6,7 @@ export default function GistAdd() {
     const firstFile = { filename: '', content: '' }
     const [token, setToken] = useState('')
     const [files, setFiles] = useState([firstFile])
-    const [gist, setGist] = useState({description: '', public: ''})
+    const [gist, setGist] = useState({description: '', public: false})
 
     const addGist = (e) => {
         e.preventDefault()
@@ -21,14 +21,14 @@ export default function GistAdd() {
 
         let payload = {
             'files': newFiles,
-            'description': gist.descritpion,
+            'description': gist.description,
             'public': gist.public
         }
 
         wrapper.createGist(payload).catch((e) => console.log(e))
 
         setFiles([firstFile])
-        setGist({description: '', public: ''})
+        setGist({description: '', public: false})
     }
 
     const filenameHandler = (value, i) => {
@@ -77,7 +77,7 @@ export default function GistAdd() {
                 )
             })}
             <label>Description</label>
-            <input type="text" value={gist.descritpion} onChange={(e) => setGist({...gist, descritpion: e.target.value})} />
+            <input type="text" value={gist.description} onChange={(e) => setGist({...gist, description: e.target.value})} />
             <label>Set as public?</label>
             <input type="checkbox" checked={gist.public} onChange={(e) => setGist({...gist, public: e.target.checked})} />
             <button onClick={addGist}>Send Gist</button>

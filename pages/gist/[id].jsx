@@ -11,7 +11,7 @@ export default function Gist() {
     
     const router = useRouter()
 
-    const getGist = async () => {
+    const getGist = async (token) => {
         let wrapper = new GistApiWrapper(token)
 
         let response = await wrapper.getGist(router.query.id).then(res => res.data).catch(e => console.log(e))
@@ -20,8 +20,12 @@ export default function Gist() {
     }
 
     useEffect(() => {
-        getToken(setToken)
-    }, [])
+        if (router.isReady)
+            getToken((token) => {
+                getGist(token)
+                setToken(token)
+            })
+    }, [router.isReady])
 
     return (
         <div>
@@ -36,8 +40,8 @@ export default function Gist() {
             <h4>Public?</h4>
             <p>{gist?.public ? 'Yes' : 'No'}</p>
             <p><a href={gist?.html_url}>Go to gist</a></p>
-            <button onClick={getGist}>reload</button>
-            <GistEdit gist={gist} />
+            <button onClick={() => getGist(token)}>reload</button>
+            {gist ? <GistEdit gist={gist} /> : ''}
         </div>
     )
 }
