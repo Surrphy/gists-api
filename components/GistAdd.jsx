@@ -16,7 +16,8 @@ export default function GistAdd() {
         let newFiles = {}
 
         files.forEach((file) => {
-            newFiles[file.filename] = {content: file.content}
+            if(file.filename)
+                newFiles[file.filename] = {content: file.content}
         })
 
         let payload = {
@@ -24,6 +25,8 @@ export default function GistAdd() {
             'description': gist.description,
             'public': gist.public
         }
+
+        console.log(payload)
 
         wrapper.createGist(payload).catch((e) => console.log(e))
 

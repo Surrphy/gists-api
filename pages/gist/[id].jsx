@@ -29,12 +29,12 @@ export default function Gist() {
 
     return (
         <div>
+            <h4>Description</h4>
+            <p>{gist?.description}</p>
             <h4>Filename</h4>
             <select value={file} onChange={(e) => setFile(e.target.value)}>
                 {gist ? Object.keys(gist.files).map((e, i) => (<option value={e} key={i}>{e}</option>)) : ''}
             </select>
-            <h4>Description</h4>
-            <p>{gist?.description}</p>
             <h4>Content</h4>
             <p>{gist?.files[file]?.content}</p>
             <h4>Public?</h4>
